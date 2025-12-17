@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Frontend</title>
+    <style>
+        @font-face {
+            font-family: Nexa Extra Light;
+            src: url(fonts/Nexa-ExtraLight.ttf);
+        }
+
+        @font-face {
+            font-family: Lemon Milk;
+            src: url(fonts/LEMONMILK-Regular.otf);
+        }
+
+        @font-face {
+            font-family: Daydream;
+            src: url(fonts/Daydream\ DEMO.otf);
+        }
+
+        * {
+            margin: 0;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .content {
+            padding: 42px;
+            width: 60vw;
+        }
+
+        .bg-red {
+            background-color: red;
+        }
+
+        .bg-blue {
+            background-color: blue;
+        }
+
+        .bg-soft {
+            background-color: #f9f9f9;
+        }
+
+        .bg-gradient {
+            background: #05b8ff;
+            background: linear-gradient(153deg,
+                    rgba(5, 184, 255, 1) 0%,
+                    rgba(149, 232, 149, 1) 100%);
+        }
+
+        h2 {
+            font-size: 52px;
+            margin-bottom: 24px;
+            color: #c9c9c9;
+            font-family: "Lemon Milk";
+        }
+
+        p {
+            margin-top: 24px;
+            color: black;
+            font-size: 24px;
+        }
+
+        .font-daydream {
+            font-family: Daydream;
+        }
+
+        .text-black {
+            color: black;
+        }
+
+        hr {
+            margin-top: 10px;
+            color: #c9c9c9;
+            width: 40vw;
+        }
+
+        img {
+            margin-top: 32px;
+            margin-bottom: 32px;
+            border: #f9f9f9 12px solid;
+        }
+
+        .bg-triangle {
+            background-image: url(images/bg-particles.png);
+        }
+    </style>
+    <link href="https:///prismjs@v1.x/themes/prism.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Primeiro Slide -->
+    <div class="slide bg-soft">
+        <div class="content">
+            <h2 class="text-black">FRONTEND DEVELOPER</h2>
+            <hr />
+            <p class="text-black">Assembly, 2025</p>
+        </div>
+    </div>
+
+    <!-- Segundo Slide -->
+    <div class="slide bg-gradient">
+        <div class="content">
+            <h2 class="font-daydream text-black">Quem sou?</h2>
+            <p class="font-draydream text-black">
+                Chamo-me Ivan, sou engenheiro informático, gosto de
+                programação criativa e desenvolver jogos.
+            </p>
+            <p>
+                O primeiro primeiro contacto com a programação foi através
+                do desenvolvimento de sites.
+            </p>
+            <img src="images/sonic_run.gif" width="100" />
+        </div>
+    </div>
+
+    <!-- Terceiro Slide -->
+    <div class="slide bg-triangle">
+        <div class="content">
+            <h2 class="text-black">O que é Frontend Development?</h2>
+            <hr />
+            <p class="text-black">
+                É o desenvolvendo da interface gráfica de um site, as quais
+                os usuários têm acesso. A composição atual do
+                desenvolvimento frontend é feito através de HTML, CSS e
+                JavaScript.
+            </p>
+            <p>
+                Resumidamente, HTML é conteúdo do site. CSS é o aspeto, e
+                JavaScript é o comportamento.
+            </p>
+            <button style="padding: 12px; margin: 5px; color:darkgoldenrod" onclick="alert('Olá');">Carrega
+                Aqui!</button>
+            <p>Mas React, Angular, Vuejs...etc?</p>
+            <p>
+                Essas ferramentas baseam-se em HTML, CSS e JavaScript e são
+                conhecidas como frameworks. A framework dita como a
+                estrutura de uma aplicação deve ser desenvolvida.
+            </p>
+        </div>
+    </div>
+
+    <!-- Terceiro Slide -->
+    <div class="slide bg-triangle">
+        <div class="content">
+            <h2 class="text-black">Como a Web Funciona?</h2>
+            <hr />
+            <p class="text-black">
+                A internet é composta por uma relação cliente-servidor. O cliente, através do navegador, envia e recebe
+                informações para o servidor, o qual nos devolve HTML, CSS, JavaScript, imagens, vídeos entre outras
+                coisas, e por fim, o navegador os exibe no ecrã.
+            </p>
+            <img src="images/web.avif" width="800">
+            <p>Como desenvolver frontend, nosso trabalho é focado apenas no navegador. Como as requisões HTTP funcionam,
+                e como o servidor trata de enviar os dados para o cliente o qual pediu é trabalho do desenvolver
+                backend. </p>
+        </div>
+    </div>
+
+    <!-- Terceiro Slide -->
+    <div class="slide bg-triangle">
+        <div class="content">
+            <h2 class="text-black">HTML</h2>
+            <hr />
+            <p class="text-black">
+                HyperText Markup Language é a linguagem de marcação (não programação) que define a estrutura de um site.
+            </p>
+            <img src="images/html_notepad.png">
+            <p>Uma página HTML é composto por elementos HTML, imagens, videos, JavaScript, CSS... </p>
+        </div>
+    </div>
+
+    <!-- Terceiro Slide -->
+    <div class="slide bg-triangle">
+        <div class="content">
+            <h2 class="text-black">Nossa Primeira Página</h2>
+            <hr />
+            <p class="text-black">
+                Criaremos uma pequena página em HTML com elementos simples.
+            </p>
+            <img src="images/anatomia.png">
+            <p>Cada elemento HTML segue o mesmo formato. Cada elemento tem um função diferente e é intepretado pelo navegador consoante a sua função.</p>
+        </div>
+    </div>
+
+    <script src="https:///prismjs@v1.x/components/prism-core.min.js"></script>
+    <script src="https:///prismjs@v1.x/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+
+</html>
