@@ -9,3 +9,7 @@ def index():
 @app.route('/about')
 def about():
     return 'Sobre!'
+
+@app.route('/downloads')
+def downloads():
+    return 'Sobre!'
