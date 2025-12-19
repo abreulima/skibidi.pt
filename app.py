@@ -7,5 +7,5 @@ def index():
     return 'Olá Mundo!'
 
 @app.route('/about')
-def index():
+def about():
     return 'Sobre!'
