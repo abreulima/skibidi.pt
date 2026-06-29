@@ -1,1 +1,103 @@
-<h1><a href="https://github.com/abreulima/GameDev/tree/main">Code</a></h1>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Links das Imagens</title>
+    <style>
+        :root {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #172033;
+            background: #f4f6fb;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 32px;
+        }
+
+        main {
+            width: min(920px, 100%);
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+        }
+
+        p {
+            margin: 0 0 24px;
+            color: #5b6475;
+            font-size: 1.05rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            display: block;
+            padding: 20px;
+            border-radius: 18px;
+            background: white;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 10px 30px rgba(20, 35, 70, 0.08);
+            border: 1px solid rgba(20, 35, 70, 0.08);
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px rgba(20, 35, 70, 0.14);
+        }
+
+        .title {
+            display: block;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .filename {
+            color: #60708a;
+            font-family: "Courier New", monospace;
+            font-size: 0.95rem;
+            word-break: break-word;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Links das Imagens</h1>
+        <p>Clique em um item para abrir a imagem correspondente.</p>
+        <section class="grid">
+        <a class="card" href="os_metalicos.png" target="_blank" rel="noopener">
+            <span class="title">Os Metálicos</span>
+            <span class="filename">os_metalicos.png</span>
+        </a>
+        <a class="card" href="o_exterminador.png" target="_blank" rel="noopener">
+            <span class="title">O Exterminador</span>
+            <span class="filename">o_exterminador.png</span>
+        </a>
+        <a class="card" href="robotics_destroyers.png" target="_blank" rel="noopener">
+            <span class="title">Robotics Destroyers</span>
+            <span class="filename">robotics_destroyers.png</span>
+        </a>
+        <a class="card" href="os_tung_tung_sahur.png" target="_blank" rel="noopener">
+            <span class="title">Os Tung Tung Sahur</span>
+            <span class="filename">os_tung_tung_sahur.png</span>
+        </a>
+        <a class="card" href="robos.png" target="_blank" rel="noopener">
+            <span class="title">Robôs</span>
+            <span class="filename">robos.png</span>
+        </a>
+        </section>
+    </main>
+</body>
+</html>
