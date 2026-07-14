@@ -30,7 +30,7 @@ const questions = [
       "Um ficheiro executável"
     ],
     correct: 0,
-    explanation: "Uma variável guarda um valor que pode ser utilizado e, em muitos casos, alterado."
+    explanation: "Uma variável guarda um valor que pode ser utilizado e alterado."
   },
   {
     question: "Quais são alguns dos tipos mais comuns em Java?",
@@ -41,7 +41,7 @@ const questions = [
       "folder, file, disk e memory"
     ],
     correct: 0,
-    explanation: "Estes tipos permitem representar números, caracteres, valores lógicos e texto."
+    explanation: "Estes tipos representam números, caracteres, valores lógicos e texto."
   },
   {
     question: "Para que serve a classe Scanner em Java?",
@@ -68,10 +68,10 @@ const questions = [
   {
     question: "Para que serve a instrução if?",
     answers: [
-      "Para executar código apenas quando uma condição é verdadeira",
+      "Para executar código quando uma condição é verdadeira",
       "Para criar um ficheiro",
       "Para declarar uma classe",
-      "Para repetir código sem condição"
+      "Para ler dados do teclado"
     ],
     correct: 0,
     explanation: "A instrução if permite tomar decisões com base numa condição."
@@ -99,15 +99,15 @@ const questions = [
     explanation: "Em Java, a condição do if fica entre parênteses e o bloco entre chavetas."
   },
   {
-    question: "O que acontece se a condição de um if for falsa e não existir else?",
+    question: "O que acontece se a condição de um if for falsa?",
     answers: [
       "O bloco do if não é executado",
       "O programa termina sempre",
-      "O bloco do if é executado duas vezes",
-      "A variável é apagada"
+      "O bloco é executado duas vezes",
+      "Todas as variáveis são apagadas"
     ],
     correct: 0,
-    explanation: "Sem else, o programa simplesmente continua depois do bloco if."
+    explanation: "Quando a condição é falsa, o bloco associado ao if é ignorado."
   },
   {
     question: "Qual destas condições verifica se a idade é maior ou igual a 18?",
@@ -162,7 +162,7 @@ const questions = [
       "double"
     ],
     correct: 0,
-    explanation: "String é usado para guardar sequências de caracteres, como nomes e frases."
+    explanation: "String é usado para guardar texto, como nomes e frases."
   },
   {
     question: "Qual tipo é usado para guardar números inteiros?",
@@ -206,7 +206,7 @@ const questions = [
       "Fecha o programa imediatamente"
     ],
     correct: 0,
-    explanation: "System.out.println() escreve informação na consola e acrescenta uma mudança de linha."
+    explanation: "System.out.println() escreve informação na consola e muda de linha."
   },
   {
     question: "Qual operador verifica se dois valores são iguais em Java?",
@@ -236,7 +236,7 @@ const questions = [
       "=",
       "==",
       "!=",
-      "&&"
+      ">="
     ],
     correct: 0,
     explanation: "O operador = atribui um valor a uma variável."
@@ -308,6 +308,8 @@ const resultMessage = document.getElementById("result-message");
 let currentQuestionIndex = 0;
 let score = 0;
 let answered = false;
+let shuffledQuestions = [];
+let currentAnswers = [];
 
 questionCount.textContent = questions.length;
 
@@ -315,10 +317,22 @@ startButton.addEventListener("click", startQuiz);
 nextButton.addEventListener("click", showNextQuestion);
 restartButton.addEventListener("click", startQuiz);
 
+function shuffleArray(items) {
+  const shuffled = [...items];
+
+  shuffled.forEach((item, index) => {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+  });
+
+  return shuffled;
+}
+
 function startQuiz() {
   currentQuestionIndex = 0;
   score = 0;
   answered = false;
+  shuffledQuestions = shuffleArray(questions);
 
   startScreen.classList.add("hidden");
   resultScreen.classList.add("hidden");
@@ -334,17 +348,26 @@ function showQuestion() {
   feedback.className = "feedback";
   answerButtons.innerHTML = "";
 
-  const currentQuestion = questions[currentQuestionIndex];
+  const currentQuestion = shuffledQuestions[currentQuestionIndex];
 
-  progressText.textContent = `Pergunta ${currentQuestionIndex + 1} de ${questions.length}`;
+  currentAnswers = shuffleArray(
+    currentQuestion.answers.map((answer, index) => ({
+      text: answer,
+      isCorrect: index === currentQuestion.correct
+    }))
+  );
+
+  progressText.textContent =
+    `Pergunta ${currentQuestionIndex + 1} de ${shuffledQuestions.length}`;
   scoreText.textContent = `Pontuação: ${score}`;
-  progressFill.style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
+  progressFill.style.width =
+    `${((currentQuestionIndex + 1) / shuffledQuestions.length) * 100}%`;
   questionText.textContent = currentQuestion.question;
 
-  currentQuestion.answers.forEach((answer, index) => {
+  currentAnswers.forEach((answer, index) => {
     const button = document.createElement("button");
     button.className = "answer-button";
-    button.textContent = answer;
+    button.textContent = answer.text;
     button.type = "button";
     button.addEventListener("click", () => selectAnswer(index, button));
     answerButtons.appendChild(button);
@@ -355,18 +378,20 @@ function selectAnswer(selectedIndex, selectedButton) {
   if (answered) return;
 
   answered = true;
-  const currentQuestion = questions[currentQuestionIndex];
+
+  const currentQuestion = shuffledQuestions[currentQuestionIndex];
+  const selectedAnswer = currentAnswers[selectedIndex];
   const buttons = [...answerButtons.children];
 
   buttons.forEach((button, index) => {
     button.disabled = true;
 
-    if (index === currentQuestion.correct) {
+    if (currentAnswers[index].isCorrect) {
       button.classList.add("correct");
     }
   });
 
-  if (selectedIndex === currentQuestion.correct) {
+  if (selectedAnswer.isCorrect) {
     score++;
     selectedButton.classList.add("correct");
     feedback.textContent = `Correto! ${currentQuestion.explanation}`;
@@ -379,7 +404,7 @@ function selectAnswer(selectedIndex, selectedButton) {
 
   scoreText.textContent = `Pontuação: ${score}`;
   nextButton.textContent =
-    currentQuestionIndex === questions.length - 1
+    currentQuestionIndex === shuffledQuestions.length - 1
       ? "Ver resultado"
       : "Próxima pergunta";
   nextButton.classList.remove("hidden");
@@ -388,7 +413,7 @@ function selectAnswer(selectedIndex, selectedButton) {
 function showNextQuestion() {
   currentQuestionIndex++;
 
-  if (currentQuestionIndex < questions.length) {
+  if (currentQuestionIndex < shuffledQuestions.length) {
     showQuestion();
   } else {
     showResult();
@@ -399,8 +424,9 @@ function showResult() {
   quizScreen.classList.add("hidden");
   resultScreen.classList.remove("hidden");
 
-  const percentage = Math.round((score / questions.length) * 100);
-  resultText.textContent = `Acertaste ${score} de ${questions.length} perguntas (${percentage}%).`;
+  const percentage = Math.round((score / shuffledQuestions.length) * 100);
+  resultText.textContent =
+    `Acertaste ${score} de ${shuffledQuestions.length} perguntas (${percentage}%).`;
 
   if (percentage === 100) {
     resultMessage.textContent = "Excelente! Dominas muito bem estes conceitos.";
